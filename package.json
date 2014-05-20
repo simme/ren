@@ -16,7 +16,7 @@
     "istanbul": "~0.2.10"
   },
   "scripts": {
-    "test": "node test/*.js"
+    "test": "./node_modules/.bin/istanbul test ./node_modules/.bin/_mocha -- -R spec"
   },
   "keywords": [
     "templates",
