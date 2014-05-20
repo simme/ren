@@ -1,0 +1,28 @@
+{
+  "name": "reinderer",
+  "version": "0.0.0",
+  "description": "Streaming declarative view rendering.",
+  "main": "reinderer.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "tape": "~2.13.1",
+    "contra": "~1.6.3"
+  },
+  "devDependencies": {
+    "handlebars": "~2.0.0-alpha.4",
+    "mocha": "~1.19.0",
+    "istanbul": "~0.2.10"
+  },
+  "scripts": {
+    "test": "node test/*.js"
+  },
+  "keywords": [
+    "templates",
+    "view",
+    "render"
+  ],
+  "author": "Simon Ljungberg <hi@iamsim.me>",
+  "license": "MIT"
+}
