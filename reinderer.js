@@ -25,11 +25,10 @@ inherit(Reinderer, EventEmitter);
 //
 // Returns a new render stream.
 //
-Reinderer.prototype.render = function reindererRender(obj) {
-  var stream = new RenderStream(obj);
+Reinderer.prototype.render = function reindererRender(obj, opts) {
+  var stream = new RenderStream(obj, opts);
 };
 
 module.exports = Reinderer;
 module.exports.RenderStream = RenderStream;
-module.exports.prefix = '#';
 

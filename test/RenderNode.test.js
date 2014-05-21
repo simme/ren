@@ -11,6 +11,8 @@ var hbs = require('handlebars');
 var RenderNode = require('../lib/RenderNode');
 var TemplateManager = require('../lib/TemplateManager');
 
+var opts = { prefix: '#' };
+
 describe('RenderNode', function () {
   it('correctly parses a view tree', function (done) {
     var manager = new TemplateManager({ basePath: __dirname + '/views' });
@@ -23,7 +25,7 @@ describe('RenderNode', function () {
 
     var tree = require('./data');
 
-    var rn = new RenderNode(tree, manager, queue);
+    var rn = new RenderNode(tree, manager, queue, opts);
 
     // ready emitted when all child nodes have loaded their templates
     rn.on('ready', function () {
@@ -55,7 +57,7 @@ describe('RenderNode', function () {
   it('calls render callback', function (done) {
     var manager = new TemplateManager({ basePath: __dirname + '/views' });
     manager.registerCompiler('.hbs', hbs.compile);
-    var rn = new RenderNode({ template: 'foobar' }, manager, contra.queue(function () {}));
+    var rn = new RenderNode({ template: 'foobar' }, manager, contra.queue(function () {}), opts);
     rn.on('ready', function () {
       rn.render(function (err, node) {
         assert(!err, err);
@@ -68,7 +70,7 @@ describe('RenderNode', function () {
   it('emits error on missing template', function (done) {
     var manager = new TemplateManager({ basePath: __dirname + '/views' });
     manager.registerCompiler('.hbs', hbs.compile);
-    var rn = new RenderNode({ template: 'bar' }, manager, contra.queue(function () {}));
+    var rn = new RenderNode({ template: 'bar' }, manager, contra.queue(function () {}), opts);
     rn.on('error', function (err) {
       assert.equal(err.code, 'ENOENT');
       done();
