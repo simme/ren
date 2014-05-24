@@ -38,7 +38,7 @@ describe('RenderStream', function () {
     // No way to really check concurrency setting...
   });
 
-  it('correctly analyzes tree and renders on resume', function (done) {
+  it('correctly analyzes tree and renders', function (done) {
     var data = require('./data');
     var rs = new RenderStream(data, opts);
 
@@ -161,6 +161,31 @@ describe('RenderStream', function () {
       console.log('fo');
       done();
     });
+  });
+
+  it('altering a node works', function (done) {
+    var data = require('./data');
+    var rs = new RenderStream(data, opts);
+
+    rs.on('willRender', function (node) {
+      if (node.node.template === 'page') {
+        node.fn = function () {
+          return 'bar';
+        };
+      }
+    });
+
+    var html = '';
+    rs.on('data', function (chunk) {
+      html += chunk.toString();
+    });
+    rs.on('end', function () {
+      var rendered = html.replace(/^\s*[\r\n]/gm, '');
+      assert.equal('bar', rendered);
+      done();
+    });
+
+    rs.start();
   });
 });
 
