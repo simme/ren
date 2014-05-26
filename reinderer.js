@@ -1,5 +1,5 @@
 //
-// # Reinderer
+// # Ren
 //
 
 /* jshint node: true */
@@ -10,25 +10,31 @@ var inherit = require('util').inherits;
 
 var RenderStream = require('./lib/RenderStream');
 
-var Reinderer = function Reinderer(options) {
-  if (!(this instanceof Reinderer)) {
-    return new Reinderer(options);
+var Ren = module.exports = function Ren(options) {
+  if (!(this instanceof Ren)) {
+    return new Ren(options);
   }
+
+  this.opts = options;
 
   EventEmitter.call(this);
 };
 
-inherit(Reinderer, EventEmitter);
+inherit(Ren, EventEmitter);
 
 //
 // ## Render
 //
 // Returns a new render stream.
 //
-Reinderer.prototype.render = function reindererRender(obj, opts) {
+Ren.prototype.render = function renRender(obj, opts) {
+  for (var key in this.opts) {
+    if (typeof opts[key] === 'undefined') {
+      opts[key] = this.opts[key];
+    }
+  }
   var stream = new RenderStream(obj, opts);
-};
 
-module.exports = Reinderer;
-module.exports.RenderStream = RenderStream;
+  return stream;
+};
 

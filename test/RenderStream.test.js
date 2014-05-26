@@ -6,7 +6,6 @@
 var assert = require('assert');
 var fs = require('fs');
 var http = require('http');
-var Bugger = require('buffer').Buffer;
 
 var hbs = require('handlebars');
 
@@ -53,7 +52,6 @@ describe('RenderStream', function () {
       done();
     });
 
-    rs.start();
   });
 
   it('bypassing constructor still returns constructed object', function () {
@@ -128,37 +126,6 @@ describe('RenderStream', function () {
 
     rs.on('end', function () {
       assert.equal(16384/32, reads);
-      done();
-    });
-  });
-
-  it('waiting for all root nodes to finish works', function (done) {
-    var rs = new RenderStream([{
-      function: function () { return 'bar'; }
-    }, {
-      function: function () {
-        return 'foo';
-      },
-      data: {
-        '#foobar': {
-          function: function () {
-            var foo = [];
-            for (var i = 10000; i > 0; i--) { foo.push(i*2/3+2*Math.PI); }
-            return foo.map(function (value) {
-              return Math.max(value, 213123).toString();
-            }).join('--');
-
-          }
-        }
-      }
-    }, {
-      function: function () { return 'bar'; }
-    }], opts);
-
-    rs.queue.emit('drain');
-    rs.on('data', function () {});
-    rs.on('end', function () {
-      console.log('fo');
       done();
     });
   });
