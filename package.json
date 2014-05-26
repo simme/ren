@@ -1,6 +1,6 @@
 {
   "name": "ren",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Declarative view rendering.",
   "main": "reinderer.js",
   "directories": {
