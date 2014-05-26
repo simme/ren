@@ -1,13 +1,12 @@
 {
-  "name": "reinderer",
+  "name": "Ren",
   "version": "0.0.0",
-  "description": "Streaming declarative view rendering.",
+  "description": "Declarative view rendering.",
   "main": "reinderer.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "tape": "~2.13.1",
     "contra": "~1.6.3"
   },
   "devDependencies": {
