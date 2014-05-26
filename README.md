@@ -56,6 +56,18 @@ modify data or template in a node before it's actually rendered.
 
 You can use this to inject additional data, transform it or whatever.
 
+## Options
+
+* **basePath**, the base path used for view loading. Defaults to cwd.
+* **concurrent**, number of views to concurrently render. Defaults to 2.
+* **prefix**, change the prefix that denotes subvies. Defaults to `#`.
+* **defaultCompiler**, set to extension of your default view format. You can
+then omit the extension in your template properties. Defaults to `.hbs`.
+* **disableCache**, loads each view every time it is rendered. Useful during
+dev. Defaults to `false`.
+* **compilers**, an object where the keys are extensions and the values are
+a function that compiles a template (ie. `Handlebars.compile`). **REQUIRED**.
+
 ## License
 
 MIT
