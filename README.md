@@ -1,4 +1,4 @@
-# Reinderer
+# Ren
 
 Declarative, streaming HTML renderer.
 
