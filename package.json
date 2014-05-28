@@ -2,7 +2,7 @@
   "name": "ren",
   "version": "0.1.0",
   "description": "Declarative view rendering.",
-  "main": "reinderer.js",
+  "main": "ren.js",
   "directories": {
     "test": "test"
   },
