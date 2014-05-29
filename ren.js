@@ -38,7 +38,7 @@ Ren.prototype.render = function renRender(obj, opts) {
   // Proxy stream events
   var self = this;
   stream.on('willRender', function (node) {
-    self.emit('weillRender', node);
+    self.emit('willRender', node);
   });
   stream.on('didRender', function (node) {
     self.emit('didRender', node);
