@@ -15,7 +15,7 @@ var Ren = module.exports = function Ren(options) {
     return new Ren(options);
   }
 
-  this.opts = options;
+  this.opts = options || {};
 
   EventEmitter.call(this);
 };
